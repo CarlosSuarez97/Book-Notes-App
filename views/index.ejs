@@ -1,8 +1,60 @@
 <%- include("partials/header.ejs") %>
 
-<div class="container">
-    <h1>Book Notes App</h1>
-    <h2>Write an honest review about the books you love</h2>
+<div class="container text-center">
+    <h1 class="poppins-semibold">Book Notes App</h1>
+    <h2 class="poppins-semibold">An application to give your most honest reviews of your latest reads</h2>
 </div>
+<br>
+<div class="container-fluid">
+    <form action="/writeReview" method="get">
+        <button class="btn btn-large btn-primary">Add Review</button>
+    </form>
+</div>
+<br>
+<% if(locals.readBooksDemo) {%>
+<% readBooksDemo.forEach(book => { %>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <!--Space for book's coverart-->
+                <p> <%=book.cover %> </p>
+            </div>
+            <div class="col-8">
+                <!--Space for the rest of the grid-->
+                <div class="row">
+                    <!--Book's title and author-->
+                    <h3><%= book.title %> by <%= book.author %></h3>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <!--Book's rating given by the user-->
+                        <h4><%= book.rating %></h4>
+                    </div>
+                    <div class="col-auto">
+                        <!--Date the user finished reading the book-->
+                        <h5><%= book.dateRead %></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Plot summary-->
+                    <p><%= book.plot %></p>
+                </div>
+                <div class="row">
+                    <!--Review written by the user-->
+                    <p><%= book.review %></p>
+                </div>
+                <div class="row">
+                    <!--Buttons for the options-->
+                    <p>Some buttons go here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% }); %>
+<% } else { %>
+    <h3 class="poppins-semiregular">There are no books here yet</h3>
+<% } %>
 
 <%- include("partials/footer.ejs") %>

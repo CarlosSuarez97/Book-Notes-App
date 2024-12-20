@@ -1,0 +1,17 @@
+YOU CAN NEGOTIATE ANYTHING - 0806541229
+
+THE LISTENING BOOK - 9781590308318
+
+create table book (
+	isbn integer primary key unique not null,
+	title varchar(150)
+);
+
+create table book_details (
+	id serial primary key,
+	book_isbn integer references book(isbn),
+	author varchar(150),
+	publisher varchar(150),
+	year char(4),
+	rating integer
+);
