@@ -1,39 +1,51 @@
 <%- include("partials/header.ejs") %>
 
-<div class="container text-center">
-    <h1 class="poppins-semibold">Tell us about the last book you read</h1>
-</div>
-<br>
-<div class="container text-center">
-    <form action="/newReview" method="post">
-        <div class="row">
-            <label for="bookTitle" class="form-label poppins-semibold">Book's Title</label>
-            <input type="text" name="title" id="bookTitle" class="form-control">
+<div class="container">
+
+    <div class="container text-center">
+        <h1 class="poppins-semibold">Tell us about your latest read</h1>
+    </div>
+    <br>
+    <form class="row g-3" action="/addReview" method="post">
+        <div class="col-md-4">
+          <label for="booksTitle" class="form-label poppins-regular">Book's Title</label>
+          <input type="text" class="form-control" id="booksTitle" name="title" required>
         </div>
-        <div class="row">
-            <div class="col-auto">
-                <label for="bookAuthor" class="form-label poppins-semibold">Author</label>
-                <input type="text" name="author" id="bookAuthor" class="form-control">
-            </div>
-            <div class="col-auto">
-                <label for="bookRating" class="form-label poppins-semibold">Your personal rating out of 10</label>
-                <input type="number" name="rating" id="bookRating" class="form-control">
-            </div>
-            <div class="col-auto">
-                <label for="lastRead" class="form-label poppins-semibold">When did you finish it?</label>
-                <input type="date" name="lastRead" id="lastRead" class="form-control">
-            </div>
+        <div class="col-md-4">
+            <label for="booksAuthor" class="form-label poppins-regular">Author</label>
+            <input type="text" class="form-control" id="booksAuthor" name="author" required>
         </div>
-        <div class="row">
-            <label for="bookPlot" class="form-label poppins-semibold">Plot Summary</label>
-            <input type="text" name="plot" id="bookPlot" class="form-control">
+        <div class="col-md-4">
+          <label for="booksIsbn" class="form-label poppins-regular">ISBN</label>
+          <input type="text" class="form-control" id="booksIsbn" name="isbn" required>
         </div>
-        <div class="row">
-            <label for="bookReview" class="form-label poppins-semibold">What are your thoughts on this book now that you're done reading it?</label>
-            <input type="text" name="review" id="bookReview" class="form-control">
+        <div class="col-12">
+          <label for="plotSummary" class="form-label poppins-regular">Plot Summmary</label>
+          <textarea name="plot" id="plotSummary" cols="30" rows="5" class="form-control"></textarea>
         </div>
-        <input type="submit" value="Publish" class="btn btn-primary">
-    </form>
+        <div class="col-12">
+            <label for="personalReview" class="form- poppins-regular">Let us know your thoughts about the book</label>
+            <textarea name="review" id="personalReview" class="form-control" cols="30" rows="5"></textarea>
+        </div>
+        <div class="col-2">
+          <label for="personalRating" class="form-label poppins-regular">Personal Rating</label>
+          <select name="rating" id="personalRating" class="form-control" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="col-4">
+            <label for="dateRead" class="form-label poppins-regular">When did you finish this book?</label>
+            <input type="date" name="dateRead" id="dateRead" class="form-control" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary poppins-regular">Publish Review</button>
+        </div>
+      </form>
+
 </div>
 
 <%- include("partials/footer.ejs") %>

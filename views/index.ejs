@@ -11,14 +11,14 @@
     </form>
 </div>
 <br>
-<% if(locals.readBooksDemo) {%>
-<% readBooksDemo.forEach(book => { %>
+<% if(locals.readBooks) {%>
+<% readBooks.forEach(book => { %>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-4">
                 <!--Space for book's coverart-->
-                <p> <%=book.cover %> </p>
+                <img src=<%= book.cover %> alt="Book Cover Not Available"/>
             </div>
             <div class="col-8">
                 <!--Space for the rest of the grid-->
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-auto">
                         <!--Book's rating given by the user-->
-                        <h4><%= book.rating %></h4>
+                        <h4><%= book.rating %> out of 5</h4>
                     </div>
                     <div class="col-auto">
                         <!--Date the user finished reading the book-->
