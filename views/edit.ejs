@@ -4,12 +4,23 @@
     <h1 class="poppins-semibols">Have you changed your mind of this book?</h1>
     <br>
     <% if(locals.readBooks) {%>
-        <form action="/edit" method="post" class="row g-3">
-            <div class="col-md-10">
+        <form action="/edit" method="post" class="d-grid g-3">
+            <div class="row">
                 <textarea name="editedReview" id="editedReview" cols="30" rows="10" class="form-control"><%= readBooks[0].review %></textarea>
                 <input type="hidden" name="id" value="<%= readBooks[0].id %>">
             </div>
-            <div class="col-md-2">
+            <div class="row">
+                <label for="personalRating" class="form-label poppins-regular">Possible New Rating</label>
+                <select name="rating" id="personalRating" class="form-control">
+                    <option value="<%= readBooks[0].rating %>" selected hidden><%= readBooks[0].rating %></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="row">
                 <button type="submit" name="edit" class="btn btn-large btn-primary poppins-regular">Make Edit</button>
             </div>
         </form>

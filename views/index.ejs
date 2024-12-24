@@ -12,9 +12,19 @@
 </div>
 <br>
 
-<% if(locals.readBooks) {%>
+<% if(locals.readBooks != '') {%>
 <% readBooks.forEach(book => { %>
 
+    <div class="container text-center">
+        <form method="post" action="/sort">
+            <select name="sort" id="sort" class="form-control">
+                <option value="ascending">Show from latest read</option>
+                <option value="descending">Show from oldest read</option>
+                <option value="No filter" selected>No filter</option>
+            </select>
+        </form>
+    </div>
+    <br>
     <div class="container">
         <div class="card">
             <div class="card-header poppins-regular">
@@ -53,7 +63,9 @@
 
 <% }); %>
 <% } else { %>
-    <h3 class="poppins-semiregular">There are no books here yet</h3>
+    <div class="container text-center">
+        <h3 class="poppins-semiregular">There are no books reviews yet</h3>
+    </div>
 <% } %>
 
 <%- include("partials/footer.ejs") %>

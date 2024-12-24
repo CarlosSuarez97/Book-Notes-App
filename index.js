@@ -53,7 +53,7 @@ app.post("/deleteReview", async (req, res) => {
 app.post("/editReview", async (req, res) => {
     const reviewToEdit = req.body.editReview;
     try {
-        const result = await db.query("SELECT review, id FROM book WHERE id = $1", [reviewToEdit]);
+        const result = await db.query("SELECT review, id, rating FROM book WHERE id = $1", [reviewToEdit]);
         readBooks = result.rows;
         console.log(readBooks[0].review);
         res.render("edit.ejs", {
@@ -68,8 +68,9 @@ app.post("/editReview", async (req, res) => {
 app.post("/edit", async (req, res) => {
     const newReview = req.body.editedReview;
     const reviewId = req.body.id;
+    const newRating = req.body.rating;
     try {
-        await db.query("UPDATE book SET review = $1 WHERE id = $2", [newReview, reviewId]);
+        await db.query("UPDATE book SET review = $1, rating = $2 WHERE id = $3", [newReview, newRating, reviewId]);
         res.redirect("/");
     } catch(err){
         console.log(err);
@@ -79,6 +80,11 @@ app.post("/edit", async (req, res) => {
 //Page to write a new review
 app.get("/writeReview", async (req, res) => {
     res.render("writeReview.ejs");
+})
+
+//Sorting reviews
+app.post("/sort", async (req, res) => {
+    
 })
 
 //Adding a new review to the database
