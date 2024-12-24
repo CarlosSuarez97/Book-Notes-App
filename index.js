@@ -35,6 +35,18 @@ app.get("/", async (req, res) => {
     } catch(err) {
         console.log(err);
     }
+});
+
+//Deleting a review
+app.post("/deleteReview", async (req, res) => {
+    const reviewToDelete = req.body.deleteReview;
+    try {
+        await db.query("DELETE FROM book WHERE id = $1", [reviewToDelete]);
+        res.redirect("/");
+    } catch(err) {
+        console.log(err);
+    }
+
 })
 
 //Page to write a new review
@@ -51,7 +63,7 @@ app.post("/addReview", async (req, res) => {
     const review = req.body.review;
     const dateRead = req.body.dateRead;
     const rating = req.body.rating;
-    const cover = "https://covers.openlibrary.org/b/isbn/" + isbn + "-M.json";
+    const cover = "https://covers.openlibrary.org/b/isbn/" + isbn + "-L.jpg";
 
 
     try {
