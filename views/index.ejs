@@ -20,23 +20,29 @@
             <div class="card-header poppins-regular">
                 <%= book.title %>
             </div>
-            <img src="<%=book.cover%>" alt="<%= book.title %>" class="card-img-top">
-            <div class="card-body">
-                <h2 class="card-title poppins-semibold"><%= book.title %></h2>
-                <h3 class="card-title poppins-light">by <%= book.author %></h3>
-                <br>
-                <h4 class="card-title poppins-semibold">Plot Summary</h4>
-                <p class="poppins-regular card-text"><i><%= book.plot %></i></p>
-                <br>
-                <h4 class="card-title poppins-semibold">Your personal notes</h4>
-                <p class="poppins-regular card-text"><%= book.review %></p>
-                <br>
-                <h5 class="card-title poppins-semibold">Your personal rating</h5>
-                <p class="poppins-regular card-text"><%= book.rating %>/5</p>
-                <br>
-                <form action="/deleteReview" method="post">
-                    <button type="submit" value="<%= book.id %>" name="deleteReview" class="btn btn-large btn-danger poppins-regular">Delete Review</button>
-                </form>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="<%=book.cover%>" alt="<%= book.title %>" class="card-img">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title poppins-semibold"><%= book.title %></h2>
+                        <h3 class="card-title poppins-light">by <%= book.author %></h3>
+                        <br>
+                        <h4 class="card-title poppins-semibold">Plot Summary</h4>
+                        <p class="poppins-regular card-text"><i><%= book.plot %></i></p>
+                        <br>
+                        <h4 class="card-title poppins-semibold">Your personal notes</h4>
+                        <p class="poppins-regular card-text"><%= book.review %></p>
+                        <br>
+                        <h5 class="card-title poppins-semibold">Your personal rating</h5>
+                        <p class="poppins-regular card-text"><%= book.rating %>/5</p>
+                        <br>
+                        <form action="/deleteReview" method="post">
+                            <button type="submit" value="<%= book.id %>" name="deleteReview" class="btn btn-large btn-danger poppins-regular">Delete Review</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-footer text-muted">
                 Read on: <%=book.date_read%>
