@@ -49,13 +49,29 @@ app.post("/deleteReview", async (req, res) => {
 
 });
 
-//Render a review's content to edit it
-app.get("/editReview", async (req, res) => {
+//Render edit page
+app.post("/editReview", async (req, res) => {
     const reviewToEdit = req.body.editReview;
     try {
-        const result = await db.query("SELECT review FROM book WHERE id = $1", [reviewToEdit]);
-        
+        const result = await db.query("SELECT review, id FROM book WHERE id = $1", [reviewToEdit]);
+        readBooks = result.rows;
+        console.log(readBooks[0].review);
+        res.render("edit.ejs", {
+            readBooks: readBooks
+        })
     } catch(err) {
+        console.log(err);
+    }
+});
+
+//Updating the review
+app.post("/edit", async (req, res) => {
+    const newReview = req.body.editedReview;
+    const reviewId = req.body.id;
+    try {
+        await db.query("UPDATE book SET review = $1 WHERE id = $2", [newReview, reviewId]);
+        res.redirect("/");
+    } catch(err){
         console.log(err);
     }
 })

@@ -39,8 +39,8 @@
                         <p class="poppins-regular card-text"><%= book.rating %>/5</p>
                         <br>
                         <form method="post">
-                            <button type="submit" value="<%= book.id %>" name="deleteReview" class="btn btn-large btn-danger poppins-regular">Delete Review</button>
-                            <button type="submit" value="<%=book.id%>" name="editReview" class="btn btn-large btn-primary poppins-regular">Edit Review</button>
+                            <button type="submit" value="<%= book.id %>" name="deleteReview" class="btn btn-large btn-danger poppins-regular" formaction="/deleteReview">Delete Review</button>
+                            <button type="submit" value="<%=book.id%>" name="editReview" class="btn btn-large btn-primary poppins-regular" formaction="/editReview">Edit Review</button>
                         </form>
                     </div>
                 </div>

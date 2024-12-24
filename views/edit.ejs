@@ -1,0 +1,19 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container text-center">
+    <h1 class="poppins-semibols">Have you changed your mind of this book?</h1>
+    <br>
+    <% if(locals.readBooks) {%>
+        <form action="/edit" method="post" class="row g-3">
+            <div class="col-md-10">
+                <textarea name="editedReview" id="editedReview" cols="30" rows="10" class="form-control"><%= readBooks[0].review %></textarea>
+                <input type="hidden" name="id" value="<%= readBooks[0].id %>">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" name="edit" class="btn btn-large btn-primary poppins-regular">Make Edit</button>
+            </div>
+        </form>
+    <% } %>
+</div>
+
+<%- include("partials/footer.ejs") %>
