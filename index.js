@@ -47,6 +47,17 @@ app.post("/deleteReview", async (req, res) => {
         console.log(err);
     }
 
+});
+
+//Render a review's content to edit it
+app.get("/editReview", async (req, res) => {
+    const reviewToEdit = req.body.editReview;
+    try {
+        const result = await db.query("SELECT review FROM book WHERE id = $1", [reviewToEdit]);
+        
+    } catch(err) {
+        console.log(err);
+    }
 })
 
 //Page to write a new review

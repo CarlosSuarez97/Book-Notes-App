@@ -38,8 +38,9 @@
                         <h5 class="card-title poppins-semibold">Your personal rating</h5>
                         <p class="poppins-regular card-text"><%= book.rating %>/5</p>
                         <br>
-                        <form action="/deleteReview" method="post">
+                        <form method="post">
                             <button type="submit" value="<%= book.id %>" name="deleteReview" class="btn btn-large btn-danger poppins-regular">Delete Review</button>
+                            <button type="submit" value="<%=book.id%>" name="editReview" class="btn btn-large btn-primary poppins-regular">Edit Review</button>
                         </form>
                     </div>
                 </div>
