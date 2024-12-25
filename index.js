@@ -75,17 +75,40 @@ app.post("/edit", async (req, res) => {
     } catch(err){
         console.log(err);
     }
-})
+});
 
 //Page to write a new review
 app.get("/writeReview", async (req, res) => {
     res.render("writeReview.ejs");
-})
+});
 
 //Sorting reviews
 app.post("/sort", async (req, res) => {
-    
-})
+    const sorting = req.body.sort;
+    try {
+        if(sorting == 1) {
+            const result = await db.query("SELECT book.id, book.title, book.rating, book.cover, book.plot, book.review, book_details.author, book_details.date_read FROM book INNER JOIN book_details ON book.id = book_details.book_id ORDER BY book_details.date_read ASC;");
+            readBooks = result.rows;
+            res.render("index.ejs", {
+                readBooks: readBooks
+            });
+        } else if (sorting == 2) {
+            const result = await db.query("SELECT book.id, book.title, book.rating, book.cover, book.plot, book.review, book_details.author, book_details.date_read FROM book INNER JOIN book_details ON book.id = book_details.book_id ORDER BY book_details.date_read DESC;");
+            readBooks = result.rows;
+            res.render("index.ejs", {
+                readBooks: readBooks
+            });
+        } else {
+            const result = await db.query("SELECT book.id, book.title, book.rating, book.cover, book.plot, book.review, book_details.author, book_details.date_read FROM book INNER JOIN book_details ON book.id = book_details.book_id;");
+            readBooks = result.rows;
+            res.render("index.ejs", {
+                readBooks: readBooks
+            });
+        }
+    } catch(err) {
+        console.log(err);
+    }
+});
 
 //Adding a new review to the database
 app.post("/addReview", async (req, res) => {
