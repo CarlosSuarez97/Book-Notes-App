@@ -11,21 +11,25 @@
     </form>
 </div>
 <br>
+<div class="container text-center">
+    <form method="post" action="/sort" class="row">
+        <div class="col-md-10">
+            <select name="sort" id="sort" class="form-control">
+                <option value="1">Show from oldest read</option>
+                <option value="2">Show from latest read</option>
+                <option value="3" selected>No filter</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-large btn-success">Filter</button>
+        </div>
+    </form>
+</div>
+<br>
 
 <% if(locals.readBooks != '') {%>
 <% readBooks.forEach(book => { %>
 
-    <div class="container text-center">
-        <form method="post" action="/sort">
-            <select name="sort" id="sort" class="form-control">
-                <option value="1">Show from latest read</option>
-                <option value="2">Show from oldest read</option>
-                <option value="3" selected>No filter</option>
-            </select>
-            <button type="submit" class="btn btn-large btn-secondary">Filter</button>
-        </form>
-    </div>
-    <br>
     <div class="container">
         <div class="card">
             <div class="card-header poppins-regular">
